@@ -14,8 +14,8 @@ function Todos(props){
     async function getData(){
 
         try{
-           const verified = await axios.post(dbUrl+"/users/verify", {}, {withCredentials:true})
-            const todosData = await axios.get(dbUrl+'/todos', {withCredentials:true})
+           const verified = await axios.post(`${dbUrl}/users/verify`, {}, {withCredentials:true})
+            const todosData = await axios.get(`${dbUrl}/todos`, {withCredentials:true})
             const todos = todosData.data
             return todos
         }catch(err){
@@ -37,7 +37,7 @@ function Todos(props){
             description: description
         }
        
-        axios.post(dbUrl+'/todos', payload, {withCredentials:true})
+        axios.post(`${dbUrl}/todos`, payload, {withCredentials:true})
         .then(data =>{
             const newTodo = data.data
             dispatch(addOneTodo(newTodo))
@@ -51,7 +51,7 @@ function Todos(props){
         }
 
         function deleteTodoftn(todoId){
-            axios.delete(dbUrl+'/todos/'+todoId, {withCredentials:true})
+            axios.delete(`${dbUrl}/todos/`+todoId, {withCredentials:true})
             .then(()=>{
                 dispatch(deleteTodo(todoId))
             })

@@ -16,7 +16,7 @@ const dbUrl = process.env.DB_URL
     const email = form['email'].value
     const password = form['password'].value
 
-    axios.post(dbUrl+'/users/login',{email, password},{withCredentials:true})
+    axios.post(`${dbUrl}/users/login`,{email, password},{withCredentials:true})
     .then(data=>{
         const user = data.data.user
         dispatch(addUser(user))
